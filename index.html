@@ -19,15 +19,15 @@
         /* ベーススタイル */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #2c3e50;
+            background-color: #121212;
+            color: #eaeaea;
             line-height: 1.6;
         }
         /* ヘッダーのスタイル */
         header {
-            background-color: #ffffff;
+            background-color: #1a1a1a;
             padding: 20px 0;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid #333;
         }
         header .container {
             max-width: 1200px;
@@ -44,6 +44,7 @@
         header h1 {
             font-size: 24px;
             font-weight: 700;
+            color: #0070f3;
         }
         /* ナビゲーション */
         nav {
@@ -58,7 +59,7 @@
         }
         nav a {
             text-decoration: none;
-            color: #34495e;
+            color: #eaeaea;
             font-size: 16px;
             font-weight: 600;
             transition: color 0.3s;
@@ -91,13 +92,13 @@
         .form-section {
             padding: 40px;
             border-radius: 8px;
-            background-color: #f7f8fa;
+            background-color: #2c2c2c;
         }
         .form-section h3 {
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #2c3e50;
+            color: #eaeaea;
         }
         .form-section form {
             margin-bottom: 20px;
@@ -107,17 +108,18 @@
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 16px;
-            color: #2c3e50;
+            color: #eaeaea;
         }
         .form-section input[type="password"] {
             width: 100%;
             padding: 12px;
             font-size: 16px;
-            border: 1px solid #dcdfe6;
+            border: 1px solid #555;
             border-radius: 4px;
             margin-bottom: 16px;
             transition: border-color 0.3s;
-            background-color: #fff;
+            background-color: #333;
+            color: #eaeaea;
         }
         .form-section input[type="password"]:focus {
             border-color: #0070f3;
@@ -144,16 +146,16 @@
         #progress p {
             margin-bottom: 10px;
             font-size: 16px;
-            color: #2c3e50;
+            color: #eaeaea;
         }
         /* フッターのスタイル */
         footer {
             text-align: center;
             padding: 40px 20px;
-            background-color: #ffffff;
+            background-color: #1a1a1a;
             color: #95a5a6;
             font-size: 14px;
-            border-top: 1px solid #eaeaea;
+            border-top: 1px solid #333;
         }
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
@@ -227,7 +229,7 @@
             document.getElementById("resultText").textContent = '';
 
             // パスワード探索を開始（サーバーサイドの処理を呼び出す必要があります）
-            fetch("https://133.167.80.89:8080/start", {
+            fetch("https://api.hochimatsu.com:8080/start", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: "target=" + encodeURIComponent(target)
@@ -235,7 +237,7 @@
 
             // 進捗情報を定期的に取得
             const interval = setInterval(function() {
-                fetch("https://133.167.80.89:8080/progress")
+                fetch("https://api.hochimatsu.com:8080/progress")
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById("progressText").textContent = data.progress;
