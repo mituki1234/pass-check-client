@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>パスワード探索ツール</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts の追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Viteと同じフォントを使用 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* リセットCSS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        /* ベーススタイル */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        /* ヘッダーのスタイル */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        header img {
+            height: 40px;
+            margin-right: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        /* ナビゲーション */
+        nav {
+            margin-left: auto;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav li {
+            margin-left: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #34495e;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #0070f3;
+        }
+        /* メインビジュアル */
+        .hero {
+            background: linear-gradient(120deg, #0070f3, #00d8ff);
+            padding: 100px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        /* メインコンテンツ */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .form-section {
+            padding: 40px;
+            border-radius: 8px;
+            background-color: #f7f8fa;
+        }
+        .form-section h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .form-section form {
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        .form-section input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+            background-color: #fff;
+        }
+        .form-section input[type="password"]:focus {
+            border-color: #0070f3;
+            outline: none;
+        }
+        .form-section button {
+            background-color: #0070f3;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-section button:hover {
+            background-color: #0051a8;
+        }
+        /* 進捗情報のスタイル */
+        #progress {
+            margin-top: 30px;
+        }
+        #progress p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        /* フッターのスタイル */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            color: #95a5a6;
+            font-size: 14px;
+            border-top: 1px solid #eaeaea;
+        }
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 20px;
+            }
+            .hero h2 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .form-section h3 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <!-- ロゴの追加 -->
+            <img src="https://vitejs.dev/logo.svg" alt="ロゴ">
+            <h1>パスワード探索ツール</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">ホーム</a></li>
+                    <li><a href="#">ドキュメント</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインビジュアル -->
+    <section class="hero">
+        <h2>高速で軽量なパスワード探索ツール</h2>
+        <p>最新の技術で強力かつ効率的なパスワード探索を実現します。</p>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <div class="container">
+        <section class="form-section">
+            <h3>パスワードを見つける</h3>
+            <form id="passwordForm">
+                <label for="target">見つけて欲しいパスワード：</label>
+                <input type="password" id="target" name="target" required>
+                <button type="submit">探索開始</button>
+            </form>
+            <div id="progress">
+                <p><strong>進捗:</strong> <span id="progressText">未開始</span></p>
+                <p><strong>見つかったパスワード:</strong> <span id="resultText"></span></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        &copy; 2023 パスワード探索ツール. All rights reserved.
+    </footer>
+
+    <script>
+        // フォーム送信時の処理
+        document.getElementById("passwordForm").onsubmit = function(event) {
+            event.preventDefault();
+            const target = document.getElementById("target").value;
+
+            // 進捗状況の初期化
+            document.getElementById("progressText").textContent = '未開始';
+            document.getElementById("resultText").textContent = '';
+
+            // パスワード探索を開始（サーバーサイドの処理を呼び出す必要があります）
+            fetch("http://133.167.80.89:8080/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "target=" + encodeURIComponent(target)
+            });
+
+            // 進捗情報を定期的に取得
+            const interval = setInterval(function() {
+                fetch("http://133.167.80.89:8080/progress")
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("progressText").textContent = data.progress;
+                        document.getElementById("resultText").textContent = data.result;
+
+                        // パスワードが見つかったら停止
+                        if (data.result) {
+                            clearInterval(interval);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('エラーが発生しました:', error);
+                        clearInterval(interval);
+                    });
+            }, 1000); // 1秒ごとに進捗を取得
+        };
+    </script>
+</body>
+</html>
